@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="tarjeta">
+    <div class="corazon">❤️</div>
+    <h1>Hola persona humana con corazón,<br>escribe aquí tu nombre</h1>
+    <input type="text" id="campoNombre" placeholder="Tu nombre..." autofocus>
+    <div class="contenedor-boton">
+      <button id="botonConfirmar">Confirmar</button>
+    </div>
+    <div class="aviso" id="aviso"></div>
+  </div>
+
+  <script>
+    const campoNombre = document.getElementById('campoNombre');
+    const boton = document.getElementById('botonConfirmar');
+    const aviso = document.getElementById('aviso');
+
+    function confirmarNombre() {
+      const nombre = campoNombre.value.trim();
+      if (nombre === '') {
+        aviso.textContent = 'Por favor, escribe tu nombre antes de continuar.';
+        return;
+      }
+      localStorage.setItem('nombreGuardado', nombre);
+      window.location.href = 'mensaje.html';
+      document.getElementById('nombreMensaje3').textContent = nombreGuardado;
+    }
+
+    boton.addEventListener('click', confirmarNombre);
+    campoNombre.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') confirmarNombre();
+    });
+  </script>
+</body>
+</html>

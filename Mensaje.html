@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un mensaje para ti</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="tarjeta">
+    <div class="corazon">❤️</div>
+    <h1>Hola, <span class="nombre-destacado" id="nombreMostrado">amigo/a</span></h1>
+    <p>
+      Si estás leyendo esto <span class="nombre-destacado" id="nombreMostrado2"></span>, enhorabuena: has sido seleccionado por el prestigioso Comité Internacional de Gente Que Da Menos Problemas de los Normales.
+    </p>
+    <p>
+      No sabemos cómo lo has conseguido, pero aquí estás <span class="nombre-destacado" id="nombreMostrado3"></span> . Probablemente seas buena gente... o al menos finges bastante bien.
+    </p>
+    <p>
+        Queríamos recordarte que, aunque a veces seas un desastre con patas, hay personas que te aguantan voluntariamente, y eso ya dice mucho de ti.
+    </p>
+    <p>
+        Sigue siendo tú. Pero si puedes devolver los tuppers, responder los WhatsApps antes de tres semanas y dejar de hacer el ridículo de vez en cuando, tampoco estaría mal.
+    </p>
+    <p>
+        En fin, este mensaje no tiene premio, ni dinero, ni un Bizum escondido. Solo queria sacarte una sonrisa y recordarte que caes mejor de lo que crees. Tmp que se te suba...
+    </p>
+    <p>
+        Ahora deja de leer esto y sigue con tu vida, aunq se que te gusta hacer nada en todo el día <span class="nombre-destacado" id="nombreMostrado4"></span> , que ya has perdido unos segundos por mi culpa. 😂
+    </p>
+    <div class="contenedor-boton">
+      <button id="botonAgradecimiento">Botón de Agradecimiento</button>
+    </div>
+    <br>
+    <p>
+        Dale no seas pelotud@
+    </p>
+  </div>
+
+  <script>
+    const nombreGuardado = localStorage.getItem('nombreGuardado');
+    if (nombreGuardado) {
+    document.getElementById('nombreMostrado').textContent = nombreGuardado;
+    document.getElementById('nombreMostrado2').textContent = nombreGuardado;
+    document.getElementById('nombreMostrado3').textContent = nombreGuardado;
+    document.getElementById('nombreMostrado4').textContent = nombreGuardado;
+    } else {
+    window.location.href = 'index.html';
+    }
+
+    document.getElementById('botonAgradecimiento').addEventListener('click', () => {
+      window.location.href = 'gracias.html';
+    });
+  </script>
+</body>
+</html>
