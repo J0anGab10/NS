@@ -17,21 +17,41 @@
     <div class="aviso" id="aviso"></div>
   </div>
 
-  <script>
+  <script type="module">
+    
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    
+    const llaves_firebase = {
+      apiKey: "AIzaSyDU_bXPLmesfrA440_fco3Ca2X7foGxS-Y",
+      authDomain: "hol1-cebe7.firebaseapp.com",
+      projectId: "hol1-cebe7",
+      storageBucket: "hol1-cebe7.firebasestorage.app",
+      messagingSenderId: "1023653411089",
+      appId: "1:1023653411089:web:d3da1995d97741b62b34b0"
+    };
+
+    const arranque_firebase = initializeApp(llaves_firebase);
+    const base_datos = getFirestore(arranque_firebase);
+
     const campoNombre = document.getElementById('campoNombre');
     const boton = document.getElementById('botonConfirmar');
     const aviso = document.getElementById('aviso');
 
-    function confirmarNombre() {
+    async function confirmarNombre() {
       const nombre = campoNombre.value.trim();
       if (nombre === '') {
         aviso.textContent = 'Por favor, escribe tu nombre antes de continuar.';
         return;
       }
+
       localStorage.setItem('nombreGuardado', nombre);
+        await addDoc(collection(base_datos, "lista_nombres"), {
+        nombre_persona: nombre
+      });
+
       window.location.href = 'Mensaje.html';
-      document.getElementById('nombreMensaje3').textContent = nombreGuardado;
-    }
+}
 
     boton.addEventListener('click', confirmarNombre);
     campoNombre.addEventListener('keydown', (e) => {
