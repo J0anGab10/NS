@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKT Beat Studio</title>
+<style>
+:root{--bg:#0b0b12;--panel:#151522;--panel2:#1d1d2d;--line:#34344a;--text:#f4f3ff;--muted:#a7a6bd;--pink:#ff3f9f;--purple:#9a68ff;--green:#58e6b2;--yellow:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#21132f 0,#0b0b12 55%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}
+main{max-width:1150px;margin:auto;padding:28px 18px 50px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--pink),var(--purple));display:grid;place-items:center;font-size:24px;box-shadow:0 8px 30px #ff3f9f33}.eyebrow{color:var(--green);font-size:11px;letter-spacing:2px;font-weight:800}.brand h1{font-size:25px;margin:2px 0 0;letter-spacing:-.7px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px}
+.panel{background:#151522eF;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 18px 60px #0002}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 15px;border-radius:12px;font-weight:750;cursor:pointer;transition:.15s}.btn:hover{transform:translateY(-1px);border-color:#77708f}.btn.primary{background:linear-gradient(135deg,var(--pink),#b34cff);border:0}.btn.record{background:#39172b;border-color:#a42e69;color:#ff9acb}.btn.record.live{background:#b51f5f;color:white;animation:pulse 1s infinite}@keyframes pulse{50%{box-shadow:0 0 0 5px #ff3f9f22}}
+label{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:6px}input,select{background:#0d0d16;color:var(--text);border:1px solid var(--line);padding:10px;border-radius:10px;font:inherit}input[type=range]{padding:0;accent-color:var(--pink);width:115px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.section-head h2{font-size:17px;margin:0}.hint{color:var(--muted);font-size:12px;line-height:1.5}.pads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.pad{min-height:116px;position:relative;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#232337,#141420);color:var(--text);cursor:pointer;text-align:left;padding:14px;overflow:hidden;transition:.08s}.pad:before{content:"";position:absolute;inset:auto 0 0;height:4px;background:var(--padcolor,var(--pink));opacity:.8}.pad:active,.pad.hit{transform:scale(.98);background:#30223a;box-shadow:0 0 0 2px var(--padcolor,var(--pink)) inset}.pad .key{display:inline-grid;place-items:center;min-width:28px;height:27px;border:1px solid #55536d;border-radius:7px;background:#0e0e18;color:#fff;font-weight:900;font-size:12px}.pad .name{display:block;font-weight:800;margin-top:12px}.pad .desc{display:block;font-size:11px;color:var(--muted);margin-top:4px}.pad .emoji{position:absolute;right:13px;top:12px;font-size:21px;opacity:.9}
+.track-list{display:flex;flex-direction:column;gap:10px}.track{display:grid;grid-template-columns:minmax(130px,1fr) 2fr auto;align-items:center;gap:14px;padding:14px;background:#10101a;border:1px solid var(--line);border-radius:14px}.track-title{font-weight:800}.track-meta{color:var(--muted);font-size:11px;margin-top:4px}.timeline{display:flex;gap:4px;align-items:center;min-height:34px;overflow:hidden}.beat-dot{height:28px;min-width:5px;flex:1;border-radius:4px;background:#29283a;max-width:13px}.beat-dot.on{background:linear-gradient(180deg,var(--pink),var(--purple));box-shadow:0 0 10px #ff3f9f35}.track-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.small{font-size:11px;padding:8px 10px}.empty{border:1px dashed #424158;border-radius:12px;padding:22px;color:var(--muted);text-align:center;font-size:13px}.status{font-size:12px;color:var(--green);min-height:18px}.footer{color:#7c7a91;font-size:11px;text-align:center;margin-top:25px}
+@media(max-width:680px){main{padding:18px 12px}.pads{grid-template-columns:repeat(2,minmax(0,1fr))}.track{grid-template-columns:1fr;gap:10px}.track-actions{justify-content:flex-start}.brand h1{font-size:21px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+ <div class="brand"><div class="logo">🎛️</div><div><div class="eyebrow">BEATMAKING EN EL NAVEGADOR</div><h1>RKT Beat Studio</h1></div></div>
+ <div class="pill">● Audio en directo · Sin instalar nada</div>
+</header>
+
+<section class="panel">
+ <div class="section-head"><h2>01 / Tu sesión</h2><span class="hint">Crea capas, una encima de otra</span></div>
+ <div class="controls">
+  <button class="btn primary" id="playAll">▶ Reproducir pistas</button>
+  <button class="btn" id="stopAll">■ Parar</button>
+  <label>BPM <input id="bpm" type="number" min="60" max="180" value="100" style="width:85px"></label>
+  <label>Volumen <input id="volume" type="range" min="0" max="100" value="75"></label>
+  <button class="btn" id="newTrack">＋ Nueva pista</button>
+ </div>
+ <p class="hint" style="margin-bottom:0">Pulsa una tecla para tocar. Dale a «Grabar pista», toca el ritmo y vuelve a pulsar «Terminar». Cada pista conserva sus golpes y se mezcla con las demás al reproducir.</p>
+</section>
+
+<section class="panel">
+ <div class="section-head"><h2>02 / Caja de ritmos RKT</h2><span class="hint">Haz clic en un pad o usa tu teclado</span></div>
+ <div class="pads" id="pads"></div>
+ <p class="hint" style="margin-bottom:0;margin-top:13px">Teclas: <b> A S D F</b> = bombos y percusión · <b> J K L Ñ</b> = caja, clap y hats. El sonido se genera en tu navegador.</p>
+</section>
+
+<section class="panel">
+ <div class="section-head"><h2>03 / Pistas grabadas</h2><span class="hint" id="trackCount">0 pistas</span></div>
+ <div class="track-list" id="tracks"></div>
+ <div class="status" id="status" aria-live="polite" style="margin-top:12px"></div>
+</section>
+<div class="footer">RKT Beat Studio · Proyecto local · Las grabaciones se mantienen mientras la página esté abierta.</div>
+</main>
+<script>
+const sounds = [
+ {id:'kick',key:'A',name:'Bombo RKT',desc:'Grave y contundente',emoji:'💥',color:'#ff3f9f'},
+ {id:'kick2',key:'S',name:'Bombo corto',desc:'Golpe seco',emoji:'🥁',color:'#ff7b54'},
+ {id:'bass',key:'D',name:'808 / Bajo',desc:'Subgrave',emoji:'〰️',color:'#a16bff'},
+ {id:'perc',key:'F',name:'Percusión',desc:'Golpe metálico',emoji:'🔔',color:'#ffd166'},
+ {id:'snare',key:'J',name:'Caja',desc:'Snare crujiente',emoji:'⚡',color:'#ff5c8a'},
+ {id:'clap',key:'K',name:'Clap',desc:'Palmada marcada',emoji:'👏',color:'#63e6be'},
+ {id:'hat',key:'L',name:'Hi-hat',desc:'Chispa rápida',emoji:'✨',color:'#6acbff'},
+ {id:'openhat',key:'Ñ',name:'Open hat',desc:'Hat abierto',emoji:'🌪️',color:'#c4a1ff'}
+];
+const $ = s => document.querySelector(s);
+let audioCtx=null, master=null, tracks=[], nextId=1, activeTrack=null, playing=false, playbackTimers=[];
+const padRoot=$('#pads'), trackRoot=$('#tracks');
+function ensureAudio(){
+ if(!audioCtx){audioCtx=new (window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=Number($('#volume').value)/100;master.connect(audioCtx.destination);}
+ if(audioCtx.state==='suspended') audioCtx.resume();
+}
+function output(){ensureAudio();const g=audioCtx.createGain();g.gain.value=Number($('#volume').value)/100;g.connect(audioCtx.destination);return g;}
+function noiseBuffer(duration){
+ const n=Math.max(1,Math.floor(audioCtx.sampleRate*duration)), b=audioCtx.createBuffer(1,n,audioCtx.sampleRate), d=b.getChannelData(0);
+ for(let i=0;i<n;i++)d[i]=Math.random()*2-1;return b;
+}
+function playSound(id, when=0){
+ ensureAudio();const t=audioCtx.currentTime+when, out=output();
+ const osc=(type,freq, endFreq, dur, gain=1)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);if(endFreq)o.frequency.exponentialRampToValueAtTime(Math.max(1,endFreq),t+dur);g.gain.setValueAtTime(gain,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g);g.connect(out);o.start(t);o.stop(t+dur+.02);};
+ const hiss=(dur, gain, hp=4000)=>{const src=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),g=audioCtx.createGain();src.buffer=noiseBuffer(dur);filter.type='highpass';filter.frequency.value=hp;g.gain.setValueAtTime(gain,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);src.connect(filter);filter.connect(g);g.connect(out);src.start(t);src.stop(t+dur+.02);};
+ if(id==='kick') {osc('sine',155,42,.38,1.0);osc('triangle',70,42,.14,.23);}
+ else if(id==='kick2'){osc('sine',125,48,.22,.85);hiss(.035,.07,1500);}
+ else if(id==='bass'){osc('sawtooth',95,42,.32,.32);osc('sine',65,35,.38,.55);}
+ else if(id==='perc'){osc('square',900,420,.09,.15);hiss(.06,.08,2200);}
+ else if(id==='snare'){hiss(.19,.42,900);osc('triangle',190,100,.12,.22);}
+ else if(id==='clap'){hiss(.14,.33,1200);setTimeout(()=>{if(audioCtx)hiss(.1,.15,1400)},28);}
+ else if(id==='hat'){hiss(.055,.24,6500);}
+ else if(id==='openhat'){hiss(.32,.25,5000);}
+ setTimeout(()=>out.disconnect(),700);
+}
+function renderPads(){
+ padRoot.innerHTML='';
+ sounds.forEach(s=>{const b=document.createElement('button');b.className='pad';b.style.setProperty('--padcolor',s.color);b.innerHTML=`<span class="key">${s.key}</span><span class="emoji">${s.emoji}</span><span class="name">${s.name}</span><span class="desc">${s.desc}</span>`;b.addEventListener('click',()=>hit(s.id));b.dataset.sound=s.id;padRoot.appendChild(b);});
+}
+function hit(id){
+ if(playing)return;
+ playSound(id);
+ if(activeTrack){const tr=tracks.find(t=>t.id===activeTrack);if(tr){tr.events.push({sound:id,time:performance.now()-tr.started});tr.dirty=true;renderTracks();}}
+ const pad=document.querySelector(`[data-sound="${id}"]`);if(pad){pad.classList.add('hit');setTimeout(()=>pad.classList.remove('hit'),90);}
+}
+function makeTrack(){const tr={id:nextId++,name:'Pista '+nextId,events:[],recording:false,started:0,dirty:false};tr.name='Pista '+(tr.id);tracks.push(tr);renderTracks();return tr;}
+function startRecording(id){
+ if(activeTrack){const prev=tracks.find(t=>t.id===activeTrack);if(prev)stopRecording(prev.id);}
+ const tr=tracks.find(t=>t.id===id);if(!tr)return;tr.events=[];tr.started=performance.now();tr.recording=true;activeTrack=id;$('#status').textContent='● Grabando '+tr.name+' · toca el ritmo';renderTracks();
+}
+function stopRecording(id){
+ const tr=tracks.find(t=>t.id===id);if(!tr)return;tr.recording=false;if(activeTrack===id)activeTrack=null;$('#status').textContent=tr.events.length?`✓ ${tr.name} guardada · ${tr.events.length} golpes`:'Pista vacía. Graba algunos golpes para escucharla.';renderTracks();
+}
+function renderTracks(){
+ $('#trackCount').textContent=`${tracks.length} pista${tracks.length===1?'':'s'}`;
+ if(!tracks.length){trackRoot.innerHTML='<div class="empty">Todavía no hay pistas. Pulsa «Nueva pista» para empezar tu beat.</div>';return;}
+ trackRoot.innerHTML='';
+ tracks.forEach(tr=>{
+  const row=document.createElement('div');row.className='track';
+  const info=document.createElement('div');info.innerHTML=`<div class="track-title">${tr.name} ${tr.recording?'🔴':''}</div><div class="track-meta">${tr.events.length} golpes · ${tr.recording?'grabando':tr.events.length?'lista para mezclar':'vacía'}</div>`;
+  const timeline=document.createElement('div');timeline.className='timeline';const count=32;
+  for(let i=0;i<count;i++){const dot=document.createElement('span');dot.className='beat-dot'+(tr.events.some(e=>Math.min(31,Math.floor(e.time/Math.max(1,((tr.events.at(-1)?.time||1)/32)))===i)?' on':'');timeline.appendChild(dot);}
+  const actions=document.createElement('div');actions.className='track-actions';
+  const rec=document.createElement('button');rec.className='btn small '+(tr.recording?'record live':'record');rec.textContent=tr.recording?'■ Terminar':'● Grabar pista';rec.onclick=()=>tr.recording?stopRecording(tr.id):startRecording(tr.id);
+  const play=document.createElement('button');play.className='btn small';play.textContent='▶';play.title='Reproducir esta pista';play.onclick=()=>playTrack(tr);
+  const clear=document.createElement('button');clear.className='btn small';clear.textContent='Borrar';clear.onclick=()=>{if(tr.recording)stopRecording(tr.id);tracks=tracks.filter(t=>t.id!==tr.id);renderTracks();};
+  actions.append(rec,play,clear);row.append(info,timeline,actions);trackRoot.appendChild(row);
+ });
+}
+function cancelPlayback(){playbackTimers.forEach(clearTimeout);playbackTimers=[];playing=false;$('#playAll').textContent='▶ Reproducir pistas';}
+function scheduleTrack(tr, baseTime=0){
+ ensureAudio();if(!tr.events.length)return;
+ const sorted=[...tr.events].sort((a,b)=>a.time-b.time);
+ sorted.forEach(e=>{const delay=Math.max(0,e.time)+baseTime;const timer=setTimeout(()=>playSound(e.sound),delay);playbackTimers.push(timer);});
+}
+function playTrack(tr){if(tr.recording)stopRecording(tr.id);if(!tr.events.length){$('#status').textContent='Esta pista está vacía.';return;}cancelPlayback();playing=true;$('#status').textContent='▶ Reproduciendo '+tr.name;const max=Math.max(...tr.events.map(e=>e.time))+300;scheduleTrack(tr);playbackTimers.push(setTimeout(()=>{playing=false;$('#status').textContent='✓ Fin de '+tr.name;},max));}
+$('#newTrack').onclick=()=>{makeTrack();$('#status').textContent='Nueva pista creada. Pulsa «Grabar pista».';};
+$('#playAll').onclick=()=>{
+ if(!tracks.some(t=>t.events.length)){ $('#status').textContent='Primero graba al menos una pista.';return;}
+ tracks.forEach(t=>{if(t.recording)stopRecording(t.id);});
+ cancelPlayback();playing=true;$('#playAll').textContent='▶ Reproduciendo…';$('#status').textContent='▶ Sonando todas las pistas juntas';
+ const longest=Math.max(...tracks.map(t=>t.events.length?Math.max(...t.events.map(e=>e.time)):0));
+ tracks.forEach(t=>scheduleTrack(t));playbackTimers.push(setTimeout(()=>{playing=false;$('#playAll').textContent='▶ Reproducir pistas';$('#status').textContent='✓ Mezcla terminada';},longest+500));
+};
+$('#stopAll').onclick=()=>{cancelPlayback();$('#status').textContent='Reproducción parada.';};
+$('#volume').oninput=()=>{if(master)master.gain.value=Number($('#volume').value)/100;};
+document.addEventListener('keydown',e=>{
+ if(e.repeat||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName))return;
+ const key=e.key.toUpperCase();const s=sounds.find(x=>x.key===key);if(s){e.preventDefault();hit(s.id);}
+ if(e.code==='Space'){e.preventDefault();if(playing)$('#stopAll').click();else $('#playAll').click();}
+});
+renderPads();makeTrack();
+</script>
+</body>
+</html>

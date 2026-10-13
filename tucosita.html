@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ CAOS ABSOLUTO DISCO RGB LINGsCARS 3000 ⚡</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        :root {
+            --rgb-speed: 0.15s;
+        }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            padding: 10px;
+            font-family: "Comic Sans MS", "Impact", "Papyrus", "Courier New", sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            cursor: crosshair;
+            background-image: 
+                radial-gradient(circle at 20% 30%, #ff00ff 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #00ffff 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, #00ff00 0%, transparent 50%);
+            animation: bgShift 0.2s infinite linear alternate;
+        }
+
+        @keyframes bgShift {
+            0% { filter: hue-rotate(0deg) contrast(1.5); }
+            100% { filter: hue-rotate(360deg) contrast(2.5); }
+        }
+
+        /* LIGHTING AND DISCO EFFECT OVERLAYS */
+        .disco-strobe {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+            animation: strobePulse 0.08s infinite alternate;
+        }
+
+        @keyframes strobePulse {
+            0% { background: rgba(255, 0, 0, 0.25); }
+            33% { background: rgba(0, 255, 0, 0.25); }
+            66% { background: rgba(0, 0, 255, 0.25); }
+            100% { background: rgba(255, 255, 0, 0.25); }
+        }
+
+        /* FOCOS DISCO MÓVILES */
+        .spotlight {
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            animation: spotMove 2s infinite alternate ease-in-out;
+        }
+        .spot1 { background: #ff00ff; top: 10%; left: 10%; animation-duration: 1.3s; }
+        .spot2 { background: #00ffff; bottom: 10%; right: 10%; animation-duration: 1.7s; }
+        .spot3 { background: #ffff00; top: 50%; left: 40%; animation-duration: 0.9s; }
+
+        @keyframes spotMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(250px, -150px) scale(1.6); }
+        }
+
+        /* MARCO EN PANTALLA ESTROBOSCÓPICO */
+        .screen-border {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 14px ridge #ff0000;
+            pointer-events: none;
+            z-index: 9997;
+            animation: borderDisco 0.12s infinite linear;
+        }
+
+        @keyframes borderDisco {
+            0% { border-color: #ff0000; box-shadow: inset 0 0 40px #ff0000; }
+            25% { border-color: #00ff00; box-shadow: inset 0 0 40px #00ff00; }
+            50% { border-color: #00ffff; box-shadow: inset 0 0 40px #00ffff; }
+            75% { border-color: #ff00ff; box-shadow: inset 0 0 40px #ff00ff; }
+            100% { border-color: #ffff00; box-shadow: inset 0 0 40px #ffff00; }
+        }
+
+        /* HEADER DESENFRENADO */
+        header {
+            background: #000;
+            border: 12px double #00ffff;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            transform: rotate(-1deg);
+            box-shadow: 0 0 40px #ff00ff;
+        }
+
+        .disco-ball {
+            width: 120px;
+            height: 120px;
+            animation: spinDisco 1s infinite linear, bounceBall 0.4s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes spinDisco {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes bounceBall {
+            0% { translateY: 0px; }
+            100% { translateY: -20px; }
+        }
+
+        /* BARRAS DE CONTROL RGB DE ALTA VELOCIDAD */
+        .controls-panel {
+            background: #111;
+            border: 8px outset #00ff00;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .btn-chaos {
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #ff00ff);
+            background-size: 300% 300%;
+            animation: rainbowBg 0.5s infinite linear;
+            color: #000;
+            font-family: "Impact", sans-serif;
+            font-size: 26px;
+            padding: 15px 30px;
+            border: 6px outset #ffff00;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(2deg);
+            box-shadow: 0 0 20px #ffffff;
+        }
+
+        .btn-chaos:hover {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .btn-sound {
+            background: #ff00ff;
+            color: #ffff00;
+            font-size: 18px;
+            font-weight: 900;
+            padding: 10px 15px;
+            border: 4px inset #00ffff;
+            margin: 5px;
+            cursor: pointer;
+            font-family: "Comic Sans MS", cursive;
+        }
+
+        .btn-sound:hover {
+            background: #00ff00;
+            color: #ff0000;
+        }
+
+        @keyframes rainbowBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* MARQUESINAS AMONTONADAS Y SOLAPADAS */
+        .marquee-stack {
+            position: relative;
+            height: 80px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 5px dashed #ff0000;
+            background: #222;
+        }
+
+        .marquee-line {
+            position: absolute;
+            width: 100%;
+            font-size: 24px;
+            font-weight: bold;
+            white-space: nowrap;
+            animation: marqueeAnim 4s linear infinite;
+        }
+        .m1 { top: 0px; color: #00ffff; animation-duration: 3s; }
+        .m2 { top: 25px; color: #ff00ff; animation-duration: 5s; animation-direction: reverse; }
+        .m3 { top: 50px; color: #ffff00; animation-duration: 2s; }
+
+        @keyframes marqueeAnim {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* GRID TOTALMENTE DESORGANIZADO, ASIMÉTRICO Y CAÓTICO */
+        .chaotic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-auto-rows: minmax(140px, auto);
+            grid-auto-flow: dense;
+            gap: 15px;
+            padding: 10px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* TARJETAS DEL CAOS - DIFERENTES TAMAÑOS, BORDES Y ROTACIONES */
+        .chaos-card {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 12px;
+            position: relative;
+            transition: all 0.2s ease;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        /* Clases de variaciones extremas de Grid/Size */
+        .span-col-1 { grid-column: span 1; }
+        .span-col-2 { grid-column: span 2; }
+        .span-col-3 { grid-column: span 3; }
+        .span-row-1 { grid-row: span 1; }
+        .span-row-2 { grid-row: span 2; }
+        .span-row-3 { grid-row: span 3; }
+        .span-row-4 { grid-row: span 4; }
+
+        .rot-left { transform: rotate(-4deg); }
+        .rot-right { transform: rotate(5deg); }
+        .rot-extreme { transform: rotate(-12deg); }
+        .rot-upside { transform: rotate(180deg); }
+
+        .overlap-up { margin-top: -35px; z-index: 20; }
+        .overlap-down { margin-bottom: -40px; z-index: 22; }
+
+        /* Estilos de bordes locos */
+        .b-groove { border: 10px groove #ff00ff; }
+        .b-ridge { border: 12px ridge #00ffff; }
+        .b-inset { border: 8px inset #ffff00; }
+        .b-outset { border: 14px outset #00ff00; }
+        .b-dashed { border: 7px dashed #ff0000; }
+
+        /* EFECTOS INTERACTIVOS AL PASAR EL RATÓN */
+        .chaos-card:hover {
+            transform: scale(1.15) rotate(15deg) !important;
+            z-index: 999 !important;
+            box-shadow: 0 0 50px #ffffff;
+            filter: invert(1);
+        }
+
+        /* TIPOGRAFÍA CAÓTICA MEZCLADA EN UN SOLO PÁRRAFO */
+        .f-comic { font-family: "Comic Sans MS", cursive; }
+        .f-impact { font-family: "Impact", fantasy; }
+        .f-papyrus { font-family: "Papyrus", serif; }
+        .f-courier { font-family: "Courier New", monospace; }
+        .f-times { font-family: "Times New Roman", serif; }
+
+        .t-giant { font-size: 42px; font-weight: 900; text-shadow: 3px 3px #ff0000; }
+        .t-tiny { font-size: 9px; font-style: italic; letter-spacing: -1px; }
+        .t-huge-bold { font-size: 55px; font-weight: 900; text-transform: uppercase; color: #ffff00; }
+        .t-blink { animation: blinkText 0.1s infinite alternate; }
+
+        @keyframes blinkText {
+            0% { opacity: 0; color: #ff0000; }
+            100% { opacity: 1; color: #00ffff; }
+        }
+
+        /* MEME ANIMATIONS */
+        .shake-meme {
+            animation: shakeHard 0.08s infinite alternate;
+        }
+
+        @keyframes shakeHard {
+            0% { transform: translate(4px, 4px) rotate(0deg); }
+            100% { transform: translate(-4px, -4px) rotate(-6deg); }
+        }
+
+        .spin-fast {
+            animation: spinFast 0.4s infinite linear;
+        }
+
+        @keyframes spinFast {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .rainbow-nyan {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 200% 200%;
+            animation: rainbowNyan 0.3s infinite linear;
+        }
+
+        @keyframes rainbowNyan {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .meme-img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #fff;
+            display: block;
+            margin: 5px auto;
+        }
+
+        /* PIE DE PÁGINA ABSURDO */
+        footer {
+            margin-top: 40px;
+            background: #ff00ff;
+            color: #000;
+            padding: 30px;
+            text-align: center;
+            border: 15px ridge #ffff00;
+            font-size: 28px;
+            font-weight: 900;
+            transform: rotate(1deg);
+        }
+    </style>
+</head>
+<body id="bodyRoot">
+
+    <div class="disco-strobe"></div>
+    <div class="screen-border"></div>
+    <div class="spotlight spot1"></div>
+    <div class="spotlight spot2"></div>
+    <div class="spotlight spot3"></div>
+
+    <header>
+        <div class="disco-ball">
+            <svg viewBox="0 0 100 100" width="100" height="100">
+                <circle cx="50" cy="50" r="45" fill="#aaa" stroke="#fff" stroke-width="2"/>
+                <path d="M10 50 Q 50 10 90 50 Q 50 90 10 50 Z" fill="#fff" opacity="0.5"/>
+                <path d="M20 30 L80 30 M20 70 L80 70 M30 20 L30 80 M70 20 L70 80" stroke="#000" stroke-width="1.5"/>
+                <circle cx="35" cy="35" r="8" fill="#ffff00"/>
+                <circle cx="65" cy="45" r="10" fill="#ff00ff"/>
+                <circle cx="45" cy="65" r="7" fill="#00ffff"/>
+            </svg>
+        </div>
+        <h1 style="font-size: 48px; margin: 5px; font-family: 'Impact'; color: #ffff00; text-shadow: 4px 4px #ff0000;">
+            🔥 LINGsCARS DISCO KARAOKE MEME 3000 🔥
+        </h1>
+        <p style="font-size: 20px; color: #00ffff; font-family: 'Comic Sans MS';">
+            ¡¡¡EL SITIO <span class="t-huge-bold">MÁS DESORGANIZADO</span> DE INTERNET И3 СД0S!!!
+        </p>
+    </header>
+
+    <div class="controls-panel">
+        <button class="btn-chaos" onclick="shuffleChaosLayout()">💥 MODO CAOS ABSOLUTO (MEZCLAR TODO) 💥</button>
+        <br><br>
+        <span style="font-size: 20px; font-weight: bold; color: #fff;">SOUNDBOARD MEME SYNTH:</span><br>
+        <button class="btn-sound" onclick="playAudioEffect('meow')">🐱 MAULLIDO LAMINE</button>
+        <button class="btn-sound" onclick="playAudioEffect('screamingGoat')">🐐 CABRA AAAAAH!</button>
+        <button class="btn-sound" onclick="playAudioEffect('pedroBeat')">🦝 PEDRO PEDRO BEAT</button>
+        <button class="btn-sound" onclick="playAudioEffect('laser')">🔫 DISPARO LASER RGB</button>
+        <button class="btn-sound" onclick="playAudioEffect('doraemonMagic')">🌀 DORAEMON MAGIC</button>
+        <button class="btn-sound" onclick="playAudioEffect('bassDrop')">💥 BASS DROP GIGACHAD</button>
+    </div>
+
+    <div class="marquee-stack">
+        <div class="marquee-line m1">🔥 OFERTAS EN ALQUILER DE AUTOS DORAEMON DROGADO --- NO COMPRES EN OTRO LADO --- КАРAОКЕ БЕСПЛАТНО 🔥</div>
+        <div class="marquee-line m2">💥 GATO BRASILEÑO BAILANDO EL BAILE DE LAMINE YAMAL EN 4K FULL HD --- CLICK AQUÍ O SE BORRA TU WINDOWS 💥</div>
+        <div class="marquee-line m3">⚡ CABRAS GRITANDO EN SANSCRITO Y RUSO --- DORAEMON PERDIÓ EL CONTROL DE SUS INVENTOS --- LING CARS RULES ⚡</div>
+    </div>
+
+    <main class="chaotic-grid" id="chaosGrid">
+
+        <!-- BLOQUE 1: GATO LAMINE / BRASILEÑO -->
+        <div class="chaos-card span-col-2 span-row-3 rot-left b-groove overlap-up">
+            <span class="t-blink t-giant f-impact" style="color: #00ff00;">GATO LAMINE!</span>
+            <p class="f-courier">
+                <span class="t-huge-bold">BAILE</span> <span class="t-tiny">brasileño</span> do <span class="f-papyrus" style="color: #ff00ff; font-size: 28px;">SATANÁS</span> 🪩🪩
+            </p>
+
+            <svg viewBox="0 0 200 200" width="160" height="160" class="shake-meme meme-img">
+                <rect width="200" height="200" fill="#ff00ff"/>
+                <!-- Gato SVG Animado -->
+                <circle cx="100" cy="110" r="50" fill="#ffff00"/>
+                <polygon points="60,70 80,30 95,65" fill="#ff0000"/>
+                <polygon points="140,70 120,30 105,65" fill="#ff0000"/>
+                <!-- Ojos saltones -->
+                <circle cx="80" cy="100" r="14" fill="#fff"/>
+                <circle cx="80" cy="100" r="6" fill="#000"/>
+                <circle cx="120" cy="100" r="14" fill="#fff"/>
+                <circle cx="120" cy="100" r="6" fill="#000"/>
+                <!-- Boca sonriente -->
+                <path d="M75 130 Q100 160 125 130" stroke="#000" stroke-width="5" fill="none"/>
+                <!-- Gafas de sol -->
+                <rect x="65" y="90" width="35" height="20" fill="#000"/>
+                <rect x="105" y="90" width="35" height="20" fill="#000"/>
+                <line x1="100" y1="98" x2="105" y2="98" stroke="#000" stroke-width="4"/>
+            </svg>
+
+            <p class="f-times" style="font-size: 11px; color: #ffff00;">
+                <b style="font-size: 20px;">КАТАСТРОФА!</b> El gato baila sin parar en la pista RGB. <i>Aprobadme la asignatura por favor.</i>
+            </p>
+            <button class="btn-sound" onclick="playAudioEffect('meow')">🔊 OIR MAULLIDO</button>
+        </div>
+
+        <!-- BLOQUE 2: DORAEMON ALUCINANDO -->
+        <div class="chaos-card span-col-3 span-row-2 rot-right b-ridge">
+            <h2 class="f-papyrus t-giant" style="color: #00ffff;">
+                <span class="t-tiny">доpаемон</span> DORAEMON <span class="f-comic" style="color: #ff0000; font-size: 38px;">DROGADO</span> 🌀
+            </h2>
+            <div style="display: flex; align-items: center; justify-content: space-around;">
+                <svg viewBox="0 0 150 150" width="130" height="130" class="spin-fast meme-img">
+                    <circle cx="75" cy="75" r="65" fill="#00a0e9"/>
+                    <circle cx="75" cy="85" r="50" fill="#fff"/>
+                    <circle cx="60" cy="50" r="16" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <circle cx="90" cy="50" r="16" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <!-- Pupilas en espiral -->
+                    <circle cx="60" cy="50" r="6" fill="#ff0000"/>
+                    <circle cx="90" cy="50" r="6" fill="#ffff00"/>
+                    <circle cx="75" cy="68" r="8" fill="#ff0000"/>
+                    <line x1="75" y1="76" x2="75" y2="110" stroke="#000" stroke-width="4"/>
+                    <path d="M45 95 Q75 130 105 95" stroke="#000" stroke-width="4" fill="none"/>
+                </svg>
+                <div style="text-align: left;">
+                    <p class="f-impact" style="color: #ff00ff; font-size: 22px; margin: 0;">
+                        ¡¡¡HA TOMADO DEMASIADOS <b>DORAYAKIS</b> PSICODÉLICOS!!!
+                    </p>
+                    <p class="f-courier" style="font-size: 12px; color: #00ff00;">
+                        Subtitles: <span class="t-huge-bold">नोबिता तुम कहाँ हो</span> (Nobita dónde estás??)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: CABRA GRITANDO AAAAAH! -->
+        <div class="chaos-card span-col-1 span-row-4 rot-extreme b-inset shake-meme" style="background: #ff0055;">
+            <h3 class="f-impact t-giant" style="color: #ffff00; text-align: center;">CABRA AAAAAH!</h3>
+            <svg viewBox="0 0 120 160" width="100" height="130" class="meme-img">
+                <!-- Cabra SVG -->
+                <polygon points="30,10 20,50 40,40" fill="#888"/>
+                <polygon points="90,10 100,50 80,40" fill="#888"/>
+                <ellipse cx="60" cy="80" rx="35" ry="45" fill="#ddd"/>
+                <!-- Ojos locos horizontales -->
+                <ellipse cx="45" cy="70" rx="8" ry="5" fill="#fff"/>
+                <rect x="41" y="69" width="8" height="2" fill="#000"/>
+                <ellipse cx="75" cy="70" rx="8" ry="5" fill="#fff"/>
+                <rect x="71" y="69" width="8" height="2" fill="#000"/>
+                <!-- BOCA GIGANTE ABIERTA -->
+                <ellipse cx="60" cy="105" rx="20" ry="25" fill="#000"/>
+                <path d="M50 115 Q60 125 70 115" stroke="#ff0000" stroke-width="4" fill="#ff0000"/>
+            </svg>
+            <p class="f-comic" style="font-size: 16px; color: #fff; font-weight: bold;">
+                <span class="t-huge-bold" style="color: #000;">Gritos</span> de agonía <span class="t-tiny">a las 3:00 AM</span>
+            </p>
+            <button class="btn-sound" style="width: 100%;" onclick="playAudioEffect('screamingGoat')">🐐 GRITAR!</button>
+        </div>
+
+        <!-- BLOQUE 4: GATO NYAN ARCOÍRIS -->
+        <div class="chaos-card span-col-3 span-row-1 rainbow-nyan b-outset overlap-down">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span class="f-impact t-giant" style="color: #fff; text-shadow: 3px 3px #000;">NYAN CAT OVERLOAD</span>
+                <span class="f-courier t-huge-bold" style="color: #000;">10000000% RGB</span>
+            </div>
+        </div>
+
+        <!-- BLOQUE 5: MICKEY MOUSE RETRO BIZARRO -->
+        <div class="chaos-card span-col-2 span-row-2 rot-right b-dashed">
+            <h4 class="f-comic" style="color: #ff00ff; font-size: 28px; margin: 0;">
+                Mickey Mouse <span class="t-tiny">1928</span> <span class="t-huge-bold" style="color: #ff0000;">CURSED</span>
+            </h4>
+            <svg viewBox="0 0 140 140" width="110" height="110" class="meme-img">
+                <circle cx="70" cy="80" r="40" fill="#000"/>
+                <circle cx="35" cy="40" r="25" fill="#000"/>
+                <circle cx="105" cy="40" r="25" fill="#000"/>
+                <ellipse cx="70" cy="85" rx="28" ry="22" fill="#fff"/>
+                <!-- Ojos hipnóticos -->
+                <circle cx="60" cy="78" r="6" fill="#000"/>
+                <circle cx="80" cy="78" r="6" fill="#000"/>
+                <polygon points="70,88 65,95 75,95" fill="#000"/>
+                <!-- Sonrisa macabra -->
+                <path d="M50 95 Q70 120 90 95" stroke="#000" stroke-width="4" fill="none"/>
+            </svg>
+            <p class="f-papyrus" style="font-size: 13px; color: #00ffff;">
+                Entró en el dominio público y <b class="t-giant" style="font-size: 20px;">SE VOLVIÓ LOCO</b>.
+            </p>
+        </div>
+
+        <!-- BLOQUE 6: MAPACHE PEDRO PEDRO PEDRO -->
+        <div class="chaos-card span-col-2 span-row-2 rot-left b-groove" style="background: #220033;">
+            <h3 class="f-impact" style="color: #ffff00; font-size: 32px; margin: 0;">
+                🦝 PEDRO PEDRO PEDRO 🦝
+            </h3>
+            <svg viewBox="0 0 140 140" width="110" height="110" class="spin-fast meme-img">
+                <circle cx="70" cy="70" r="55" fill="#777"/>
+                <!-- Antaz antifaz mapache -->
+                <ellipse cx="48" cy="60" rx="18" ry="12" fill="#000"/>
+                <ellipse cx="92" cy="60" rx="18" ry="12" fill="#000"/>
+                <circle cx="48" cy="60" r="5" fill="#fff"/>
+                <circle cx="92" cy="60" r="5" fill="#fff"/>
+                <polygon points="70,72 63,82 77,82" fill="#000"/>
+                <path d="M55 90 Q70 105 85 90" stroke="#000" stroke-width="4" fill="none"/>
+            </svg>
+            <p class="f-courier" style="font-size: 14px; color: #ff00ff;">
+                GIRANDO EN TU PANTALLA <span class="t-huge-bold">HASTA QUE EXPLOTE</span>.
+            </p>
+        </div>
+
+        <!-- BLOQUE 7: GIGACHAD & SHREK CONFIRMED -->
+        <div class="chaos-card span-col-3 span-row-2 rot-right b-outset" style="background: #002200;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <div>
+                    <h2 class="f-impact t-giant" style="color: #00ff00; margin: 0;">SHREK IS LIFE</h2>
+                    <p class="f-comic" style="font-size: 15px; color: #ffff00;">
+                        <span class="t-huge-bold">SOMEBODY</span> ONCE TOLD ME <span class="t-tiny">the world is gonna roll me</span>
+                    </p>
+                    <span class="f-times" style="font-size: 25px; color: #ff00ff; font-weight: bold;">
+                        СПАСИБО ШРЕК!
+                    </span>
+                </div>
+                <svg viewBox="0 0 120 120" width="100" height="100" class="shake-meme meme-img">
+                    <circle cx="60" cy="60" r="50" fill="#55aa22"/>
+                    <!-- Orejas Shrek -->
+                    <polygon points="10,20 25,35 15,45" fill="#55aa22"/>
+                    <polygon points="110,20 95,35 105,45" fill="#55aa22"/>
+                    <!-- Cara -->
+                    <circle cx="45" cy="50" r="6" fill="#000"/>
+                    <circle cx="75" cy="50" r="6" fill="#000"/>
+                    <rect x="50" y="70" width="20" height="8" fill="#336611"/>
+                    <path d="M35 85 Q60 110 85 85" stroke="#000" stroke-width="4" fill="none"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- BLOQUE 8: RANDOM TEXTO ESPAÑOL/SPANGLISH/CIRÍLICO -->
+        <div class="chaos-card span-col-2 span-row-3 rot-left b-inset">
+            <h3 class="f-papyrus" style="color: #ff0000; font-size: 30px;">
+                ¡¡TEXTO <span class="t-huge-bold" style="color: #00ffff;">ALEATORIO</span>!!
+            </h3>
+            <p class="f-courier" style="font-size: 14px; color: #fff;">
+                Hola amigo <span class="t-tiny">this website makes no sense at all</span> porque los profesores dijeron 
+                <b class="t-giant" style="font-size: 26px; color: #ffff00;">"HAZLO PEOR"</b> y yo dije <i>Смотри как могу!</i> 
+                здесь нет логики <span class="t-blink" style="color: #ff00ff; font-size: 22px;">100% REAL NO FAKE</span>.
+            </p>
+            <p class="f-impact" style="font-size: 20px; color: #00ff00;">
+                ¡¡¡OFERTA: ALQUILA UN TANQUE EN LINGsCARS POR 5€ AL MES!!!
+            </p>
+        </div>
+
+        <!-- BLOQUE 9: GATO A LAS 3 AM -->
+        <div class="chaos-card span-col-1 span-row-2 rot-extreme b-dashed" style="background: #330000;">
+            <p class="f-comic t-giant" style="color: #ffff00; font-size: 22px; margin: 0;">GATO 3 AM</p>
+            <svg viewBox="0 0 100 100" width="80" height="80" class="spin-fast meme-img">
+                <circle cx="50" cy="50" r="40" fill="#111"/>
+                <!-- Ojos brillantes láser -->
+                <circle cx="35" cy="45" r="10" fill="#00ff00"/>
+                <circle cx="65" cy="45" r="10" fill="#00ff00"/>
+                <line x1="0" y1="45" x2="100" y2="45" stroke="#ff0000" stroke-width="3"/>
+            </svg>
+            <span class="t-tiny f-courier" style="color: #fff;">MIRANDO FIJAMENTE A LA PARED</span>
+        </div>
+
+    </main>
+
+    <footer>
+        <span class="t-blink">⚡ WEBPAGE DESIGNED BY LINGsCARS & ARNGREN FAN CLUB ⚡</span><br>
+        <span style="font-size: 16px; font-family: 'Comic Sans MS'; color: #000;">
+            NO RIGHTS RESERVED (C) 1997-2026 - HECHO CON CERO UX/UI Y MUCHO AMOR
+        </span>
+    </footer>
+
+    <script>
+        /* WEB AUDIO API - SINTETIZADOR DE EFECTOS SONOROS BIZARROS EN TIEMPO REAL */
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playAudioEffect(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'meow') {
+                // Sintetizador de maullido bizarro
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.2);
+                osc.frequency.exponentialRampToValueAtTime(300, now + 0.5);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.5);
+            } 
+            else if (type === 'screamingGoat') {
+                // Sintetizador de grito de cabra
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(250, now);
+                for (let i = 0; i < 10; i++) {
+                    osc.frequency.setValueAtTime(200 + Math.random() * 300, now + i * 0.05);
+                }
+                gain.gain.setValueAtTime(0.4, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.6);
+            }
+            else if (type === 'pedroBeat') {
+                // Secuencia techno rápida
+                for (let i = 0; i < 4; i++) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(150 - (i * 20), now + (i * 0.1));
+                    gain.gain.setValueAtTime(0.4, now + (i * 0.1));
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + (i * 0.1) + 0.08);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + (i * 0.1));
+                    osc.stop(now + (i * 0.1) + 0.08);
+                }
+            }
+            else if (type === 'laser') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(1200, now);
+                osc.frequency.exponentialRampToValueAtTime(100, now + 0.25);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.25);
+            }
+            else if (type === 'doraemonMagic') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.linearRampToValueAtTime(1200, now + 0.4);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.4);
+            }
+            else if (type === 'bassDrop') {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.exponentialRampToValueAtTime(30, now + 0.8);
+                gain.gain.setValueAtTime(0.6, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 0.8);
+            }
+        }
+
+        /* FUNCIÓN DE MODO CAOS ABSOLUTO: MEZCLA Y REORGANIZA TODO EL GRID AL AZAR */
+        function shuffleChaosLayout() {
+            const grid = id => document.getElementById(id);
+            const cards = Array.from(document.querySelectorAll('.chaos-card'));
+            
+            const colSpans = ['span-col-1', 'span-col-2', 'span-col-3'];
+            const rowSpans = ['span-row-1', 'span-row-2', 'span-row-3', 'span-row-4'];
+            const rotations = ['rot-left', 'rot-right', 'rot-extreme', 'rot-upside'];
+            const borders = ['b-groove', 'b-ridge', 'b-inset', 'b-outset', 'b-dashed'];
+
+            // Barajar array de elementos
+            cards.sort(() => Math.random() - 0.5);
+
+            cards.forEach(card => {
+                // Remover clases antiguas de posicionamiento
+                card.className = 'chaos-card';
+
+                // Asignar nuevas variaciones aleatorias desorganizadas
+                const randomCol = colSpans[Math.floor(Math.random() * colSpans.length)];
+                const randomRow = rowSpans[Math.floor(Math.random() * rowSpans.length)];
+                const randomRot = rotations[Math.floor(Math.random() * rotations.length)];
+                const randomBorder = borders[Math.floor(Math.random() * borders.length)];
+
+                card.classList.add(randomCol, randomRow, randomRot, randomBorder);
+
+                // Añadir margenes desalineados aleatorios
+                if (Math.random() > 0.6) {
+                    card.style.marginTop = (Math.random() * -40) + 'px';
+                } else {
+                    card.style.marginTop = '0px';
+                }
+
+                // Reinsertar en el DOM en nuevo orden
+                grid('chaosGrid').appendChild(card);
+            });
+
+            // Reproducir sonido de caos
+            playAudioEffect('laser');
+        }
+
+        // Efecto interactivo: Mover elementos al pasar el ratón aleatoriamente
+        document.querySelectorAll('.chaos-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if (Math.random() > 0.5) {
+                    playAudioEffect('laser');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
